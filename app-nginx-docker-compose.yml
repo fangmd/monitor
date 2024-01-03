@@ -1,0 +1,15 @@
+version: "2"
+services:
+  nginx:
+    image: nginx:stable-alpine
+    restart: always
+    # network_mode: host
+    volumes:
+      - ./nginx-app/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx-app/conf.d:/etc/nginx/conf.d
+      - ./volumes/promtail:/var/log/nginx
+
+      - ./nginx-app/www/:/web/spa/build/
+
+    ports:
+      - 9003:9003
